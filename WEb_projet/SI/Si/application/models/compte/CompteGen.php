@@ -36,9 +36,19 @@ class CompteGen extends CI_model{
     return $this->nom;
   }
 
-  public function getAll($conn, $nom){
+  public function getAll_byName($conn, $nom){
     $tab = array();
     $sql =sprintf("select * from compte where nom = %d", $nom);
+    $result = $conn->query($sql):
+    foreach ($result->result() as $row){
+      $comp = new Compte($row->credit,$row->debit,$row->id,$row->nom)
+      $tab[] = $comp
+    } 
+    return $tab;
+  }
+  public function getAll($conn){
+    $tab = array();
+    $sql ="select * from compte ";
     $result = $conn->query($sql):
     foreach ($result->result() as $row){
       $comp = new Compte($row->credit,$row->debit,$row->id,$row->nom)

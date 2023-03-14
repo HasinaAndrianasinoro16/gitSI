@@ -37,7 +37,7 @@ class CompteTiers extends CI_model{
   }
 
 
-    public function getAll($conn, $nom){
+    public function getAll_byName($conn, $nom){
     $tab = array();
     $sql =sprintf("select * from compteTier where nom = %d", $nom);
     $result = $conn->query($sql):
@@ -47,6 +47,15 @@ class CompteTiers extends CI_model{
     } 
     return $tab;
   }
+  public function getAll($conn){
+    $tab = array();
+    $sql ="select * from compteTier ";
+    $result = $conn->query($sql):
+    foreach ($result->result() as $row){
+      $comp = new Compte($row->credit,$row->debit,$row->id,$row->nom)
+      $tab[] = $comp
+    } 
+    return $tab;
 
 }
 ?>
