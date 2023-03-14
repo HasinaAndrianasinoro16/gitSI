@@ -47,16 +47,5 @@ class CompteGen extends CI_model{
     return $tab;
   }
 
-    public function getAllTiers($conn, $nom){
-    $tab = array();
-    $sql =sprintf("select * from compteTier where nom = %d", $nom);
-    $result = $conn->query($sql):
-    foreach ($result->result() as $row){
-      $comp = new Compte($row->credit,$row->debit,$row->id,$row->nom)
-      $tab[] = $comp
-    } 
-    return $tab;
-  }
-
 }
 ?>
