@@ -69,6 +69,18 @@ class identite_Entreprise extends CI_Model {
     public function setIdContact($idContact) {
         $this->idContact = $idContact;
     }
+
+    public function getAll($conn){
+    $tab = array();
+    $sql ="select * from identite_Entreprise ";
+    $result = $conn->query($sql):
+    foreach ($result->result() as $row){
+      $comp = new Compte(  $row->id, $row->logo, $row->nomSociete, $row->objetSociete, $row->dateCreation, $row->lieuExercice, $row->idContact )
+      $tab[] = $comp
+    } 
+    return $tab;
+
+
 }
 
 ?>
